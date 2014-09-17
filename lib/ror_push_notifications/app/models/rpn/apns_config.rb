@@ -62,7 +62,7 @@ class Rpn::ApnsConfig < Rpn::Base
         binary = binaries[i]
         last = i == binaries.length - 1
 
-        res = conn.write binary
+        conn.write binary
         conn.flush if last
 
         if IO.select([conn], nil, nil, last ? 2 : 0.001)
@@ -79,11 +79,9 @@ class Rpn::ApnsConfig < Rpn::Base
             break
           else
             results << Rpn::ApnsNotification::NO_ERROR_STATUS_CODE
-            puts results
           end
         else
           results << Rpn::ApnsNotification::NO_ERROR_STATUS_CODE
-          puts results
         end
       end
     end while results.length != binaries.length
