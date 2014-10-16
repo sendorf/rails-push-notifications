@@ -4,7 +4,6 @@ class Rpn::Device < Rpn::Base
 
   attr_accessible :guid
 
-  validates :guid, :presence => true
   validates :config, :presence => true
 
 end
